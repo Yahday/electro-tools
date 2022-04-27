@@ -1,0 +1,42 @@
+<div class="consum-container">
+    <h1>Calculadora de consumo eléctrico</h1>
+    <div class="split-screen">
+        <div class="final-consum-container">
+            <p>Tu consumo eléctrico mensual es de:</p>
+            <div>
+                <span class="final-consum">{{consumption$| async | number: '1.0-3'}} KWh</span>
+            </div>
+            <button *ngIf="(consumption$| async) !== 0" mat-button (click)="clear()">REINICIAR</button>
+        </div>
+
+        <div>
+            <div class="elements-list">
+                <p *ngIf="consumers.length === 0">Agregue un elemento para poder saber su consumo electrico</p>
+                <div *ngFor="let consumer of consumers; let i=index" class="awad-card awad-card-b">
+                    <div>
+                        <span class="item-title">{{consumer.name}}</span>
+                        <span>Potencia: {{consumer.power | number: '1.0-3'}} w</span>
+                        <span>Tiempo mensual: {{consumer.time | number: '1.0-2'}} h</span>
+                        <span>Consumo: {{consumer.consumption | number: '1.0-3'}} KWh</span>
+                    </div>
+                    <div class="fav-container-delete">
+                        <button mat-icon-button 
+                                aria-label="Borrar elemento"
+                                (click)="delete(i, consumer.consumption)">
+                                <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fav-container">
+        <button mat-fab 
+                color="accent" 
+                aria-label="Agregue un elemento" 
+                class="awad-button"
+                (click)="add()">
+                <mat-icon>add</mat-icon>
+        </button>
+    </div>
+</div>

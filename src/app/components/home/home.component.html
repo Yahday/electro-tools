@@ -1,0 +1,15 @@
+<div class="home-container">
+    <div class="awad-card hover" *ngFor="let modul of modules">
+        <div class="menu-card" 
+            (click)="goTo(modul.route)">
+
+            <div><img [src]="modul.icon" alt=""></div>
+            <div>
+                <h2>
+                    {{modul.title}}
+                </h2>
+                <p>{{modul.description}}</p>
+            </div> 
+        </div>
+    </div>
+</div>

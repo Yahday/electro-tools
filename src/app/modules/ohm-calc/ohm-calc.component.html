@@ -1,0 +1,43 @@
+<h1>Calculadora Ley de Ohms</h1>
+<div class="split-screen">
+    <div>
+        <div class="awad-card">
+            <div class="form-container">
+                <form [formGroup]="form">
+                    <mat-form-field color="accent">
+                        <mat-label>Tensión (Volts)</mat-label>
+                        <input formControlName="v" matInput type="number" placeholder="Volts">
+                        <span matSuffix>V</span>
+                    </mat-form-field>
+
+                    <mat-form-field color="accent">
+                        <mat-label>Corriente (Ampers)</mat-label>
+                        <input formControlName="a" matInput type="number" placeholder="Ampers">
+                        <span matSuffix>A</span>
+                    </mat-form-field>
+
+                    <mat-form-field color="accent">
+                        <mat-label>Potencia (Watts)</mat-label>
+                        <input formControlName="w" matInput type="number" placeholder="Watts">
+                        <span matSuffix>W</span>
+                    </mat-form-field>
+
+                    <mat-form-field color="accent">
+                        <mat-label>Resistencia (Ohms)</mat-label>
+                        <input formControlName="o" matInput type="number" placeholder="Ohms">
+                        <span matSuffix>Ω</span>
+                    </mat-form-field>
+
+                    <div class="form-actions">
+                        <button (click)="onCalculate()" mat-raised-button color="accent" class="awad-button">CALCULAR</button>
+                        <button (click)="onClear()" mat-button>LIMPIAR</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="img-container">
+        <img class="awad-shadow" src="/assets/svg/ohm_formula.svg" alt="formulas ley de ohm">
+    </div>
+</div>

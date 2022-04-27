@@ -1,0 +1,16 @@
+<header>
+    <mat-toolbar color="primary">
+        <div class="logo-container">
+            <a href="/"><img src="../../../../assets/logo.svg" alt="logo"></a> 
+            <h2>{{title | uppercase}}</h2>
+        </div>
+        <button 
+            mat-icon-button 
+            (click)="onMenuButton()"
+            class="hide-desktop"
+            aria-label="menu">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </mat-toolbar>
+    
+</header>

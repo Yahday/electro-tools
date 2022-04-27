@@ -1,0 +1,43 @@
+.for-nav {
+    display: flex;
+    background-color: #393C4C;
+}
+.nav-container {
+    width: 200px;
+    display: none;
+}
+@media (min-width: 1024px) {
+    .nav-container {
+        display: block;
+    }
+}
+.main-container {
+    flex: 1;
+    height: 100vh;
+    min-height: 375px;
+    display: flex;
+    flex-direction: column;
+    background-color: #393C4C;
+}
+.main-content {
+    flex: 1;
+    max-width: 1024px;
+    margin: 0 auto;
+    overflow: auto;
+    padding: 2rem;
+    padding-bottom: 0;
+    scroll-padding: 2rem;
+}
+@media (max-width: 915px) and (orientation: landscape) {
+    .main-content {
+        overflow: visible;
+    }
+}
+mat-sidenav {
+    width: 200px;
+}
+
+::ng-deep.cdk-overlay-container {
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px)
+}

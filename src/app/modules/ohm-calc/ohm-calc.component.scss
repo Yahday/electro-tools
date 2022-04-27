@@ -1,0 +1,58 @@
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.split-screen {
+    //height: 100%;
+    max-height: 1024px;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    padding-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+    .split-screen {
+        justify-content: space-around;
+    }
+}
+
+@media (min-width: 1024px) {
+    h1 {
+        text-align: left;
+    }
+    .split-screen {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.form-container {
+    min-width: 15rem;
+}
+
+@media (min-width: 852px) {
+    .form-container {
+        min-width: 28rem;
+    }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.awad-shadow {
+    border-radius: 100%;
+}
+
+.img-container {
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    img {
+        margin-bottom: 2rem;
+    }
+}

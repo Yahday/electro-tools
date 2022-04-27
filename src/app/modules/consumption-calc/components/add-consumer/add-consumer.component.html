@@ -1,0 +1,200 @@
+<div>
+    <div class="form-container">
+        <mat-stepper linear labelPosition="bottom" #stepper color="accent">
+            <mat-step [stepControl]="name">
+                <p class="step-hint">Agrega un nombre para identificar este elemento (Ej. "Refrigerador 1")</p>
+                <form [formGroup]="form">
+                    <mat-form-field color="accent">
+                        <mat-label>Nombre del concepto</mat-label>
+                        <input formControlName="name" matInput placeholder="Nombre">
+                    </mat-form-field>
+                    <div class="form-actions">
+                        <button mat-button matStepperNext type="button"><mat-icon>arrow_forward</mat-icon></button>
+                        <button mat-button type="button" (click)="this.dialogRef.close()">Cerrar</button>
+                    </div>
+                </form>
+            </mat-step>
+
+            <mat-step [stepControl]="time">
+                <p class="step-hint">Escribe cuanto tiempo está funcionando este elmento, en el siguiente paso pondrás la frecuencia con la que funciona. (Ej. 4 horas)</p>
+                <form [formGroup]="form">
+                    <div class="two-fields">
+                        <mat-form-field color="accent">
+                            <mat-label>Tiempo</mat-label>
+                            <input formControlName="time_value" matInput type="number" placeholder="Tiempo">
+                        </mat-form-field>
+        
+                        <mat-form-field color="accent">
+                            <mat-label>Unidad</mat-label>
+                            <mat-select formControlName="time_unit" panelClass="awad-select-panel">
+                                <mat-option *ngFor="let option of timeOptions" [value]="option.value">
+                                  {{option.label}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-actions">
+                        <button mat-button matStepperNext type="button"><mat-icon>arrow_forward</mat-icon></button>
+                        <button mat-button matStepperPrevious type="button"><mat-icon>arrow_back</mat-icon></button>
+                    </div>
+                </form>
+            </mat-step>
+
+            <mat-step [stepControl]="cycle">
+                <p class="step-hint">Escribe que tan seguido funciona este aparato; puede ser al día, a la semana o al mes.</p>
+                <form [formGroup]="form">
+                    <div class="two-fields">
+                        <mat-form-field color="accent">
+                            <mat-label>¿Cuántas veces?</mat-label>
+                            <input formControlName="cycle_value" matInput type="number" placeholder="Ciclo">
+                        </mat-form-field>
+        
+                        <mat-form-field color="accent">
+                            <mat-label>Frecuencia</mat-label>
+                            <mat-select formControlName="cycle_unit"  panelClass="awad-select-panel">
+                                <mat-option *ngFor="let option of cycleOptions" [value]="option.value">
+                                  {{option.label}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-actions">
+                        <button mat-button matStepperNext type="button"><mat-icon>arrow_forward</mat-icon></button>
+                        <button mat-button matStepperPrevious type="button"><mat-icon>arrow_back</mat-icon></button>
+                    </div>
+                </form>
+            </mat-step>
+
+            <mat-step [stepControl]="power">
+                <p class="step-hint">Aquí agrega los Watts (potencia) que consume el elemento. Si desconoces este dato puedes calcularlo usando el voltaje y los ampers.</p>
+                <form [formGroup]="form">
+                    <mat-form-field color="accent">
+                        <mat-label>Potencia (Watts)</mat-label>
+                        <input formControlName="power" matInput type="number" placeholder="Watts" (change)="powerChange()">
+                        <span matSuffix>W</span>
+                    </mat-form-field>
+
+                    <fieldset>
+                        <legend>¿No conozco la potencia? Calcular</legend> 
+                        <div class="two-fields">
+                            <mat-form-field color="accent">
+                                <mat-label>Voltaje</mat-label>
+                                <input matInput 
+                                       type="number" 
+                                       placeholder="Voltaje" 
+                                       [(ngModel)]="v"
+                                       (change)="calculatePower()"
+                                       [ngModelOptions]="{standalone: true}">
+                                <span matSuffix>V</span>
+                            </mat-form-field>
+            
+                            <mat-form-field color="accent">
+                                <mat-label>Amperaje</mat-label>
+                                <input matInput 
+                                       type="number" 
+                                       placeholder="Amperaje" 
+                                       [(ngModel)]="a"
+                                       (change)="calculatePower()"
+                                       [ngModelOptions]="{standalone: true}">
+                                <span matSuffix>A</span>
+                            </mat-form-field>
+                        </div>
+                    </fieldset>
+                    <div class="form-actions">
+                        <button (click)="onSend()" 
+                                mat-raised-button 
+                                color="accent" 
+                                class="awad-button"
+                                [disabled]="this.form.invalid">
+                                CALCULAR
+                        </button>
+                        <button mat-button matStepperPrevious type="button"><mat-icon>arrow_back</mat-icon></button>
+                    </div>
+                </form>
+            </mat-step>
+        </mat-stepper>
+
+        <!-- <form [formGroup]="form">
+            <mat-form-field color="accent">
+                <mat-label>Nombre del concepto</mat-label>
+                <input formControlName="name" matInput placeholder="Nombre">
+            </mat-form-field>
+
+            <div class="two-fields">
+                <mat-form-field color="accent">
+                    <mat-label>Tiempo</mat-label>
+                    <input formControlName="time_value" matInput type="number" placeholder="Tiempo">
+                </mat-form-field>
+
+                <mat-form-field color="accent">
+                    <mat-label>Unidad</mat-label>
+                    <mat-select formControlName="time_unit" panelClass="awad-select-panel">
+                        <mat-option *ngFor="let option of timeOptions" [value]="option.value">
+                          {{option.label}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="two-fields">
+                <mat-form-field color="accent">
+                    <mat-label>¿Cuántas veces?</mat-label>
+                    <input formControlName="cycle_value" matInput type="number" placeholder="Ciclo">
+                </mat-form-field>
+
+                <mat-form-field color="accent">
+                    <mat-label>Frecuencia</mat-label>
+                    <mat-select formControlName="cycle_unit"  panelClass="awad-select-panel">
+                        <mat-option *ngFor="let option of cycleOptions" [value]="option.value">
+                          {{option.label}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <mat-form-field color="accent">
+                <mat-label>Potencia (Watts)</mat-label>
+                <input formControlName="power" matInput type="number" placeholder="Watts" (change)="powerChange()">
+                <span matSuffix>W</span>
+            </mat-form-field>
+
+            <fieldset>
+                <legend>¿No conozco la potencia? Calcular</legend> 
+                <div class="two-fields">
+                    <mat-form-field color="accent">
+                        <mat-label>Voltaje</mat-label>
+                        <input matInput 
+                               type="number" 
+                               placeholder="Voltaje" 
+                               [(ngModel)]="v"
+                               (change)="calculatePower()"
+                               [ngModelOptions]="{standalone: true}">
+                        <span matSuffix>V</span>
+                    </mat-form-field>
+    
+                    <mat-form-field color="accent">
+                        <mat-label>Amperaje</mat-label>
+                        <input matInput 
+                               type="number" 
+                               placeholder="Amperaje" 
+                               [(ngModel)]="a"
+                               (change)="calculatePower()"
+                               [ngModelOptions]="{standalone: true}">
+                        <span matSuffix>A</span>
+                    </mat-form-field>
+                </div>
+            </fieldset>
+
+            <div class="form-actions">
+                <button (click)="onSend()" 
+                        mat-raised-button 
+                        color="accent" 
+                        class="awad-button"
+                        [disabled]="this.form.invalid">
+                        CALCULAR
+                </button>
+                <button (click)="onClear()" mat-button>LIMPIAR</button>
+            </div>
+        </form> -->
+    </div>
+</div>

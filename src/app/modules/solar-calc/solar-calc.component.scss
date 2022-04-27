@@ -1,0 +1,54 @@
+h1 {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.solar-container {
+    padding-bottom: 2rem;
+}
+
+.form-container {
+    min-width: 15rem;
+}
+
+@media (min-width: 852px) {
+    .form-container {
+        min-width: 28rem;
+    }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.group-container {
+    margin: 1rem;
+}
+
+mat-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.25rem;
+}
+
+mat-radio-group>* {
+    margin: 0.25rem;
+}
+
+.answer-container {
+    font-size: 1.25rem;
+    max-width: 30ch;
+    line-height: 1.5;
+    text-align: center;
+    margin: 0 auto;
+}
+.answer-container span{
+    font-weight: 600;
+    color: #F9A750;
+}
+
+::ng-deep.cdk-overlay-container {
+    background-color: transparent;
+    backdrop-filter: none;
+}

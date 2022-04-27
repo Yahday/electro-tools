@@ -1,0 +1,56 @@
+::ng-deep.mat-dialog-container {
+  background: #393C4C !important;
+  border-top: 1rem solid #F9A750;
+  padding: 2rem;
+  box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.5), 
+             -4px -4px 10px rgba(255, 255, 255, 0.15);
+}
+
+@media (min-width: 1024px) {
+  ::ng-deep.mat-dialog-container {
+    border-radius: 0.5rem;
+  }
+}
+
+::ng-deep.mat-stepper-horizontal {
+  background: #393C4C !important;
+  padding: 0;
+}
+
+::ng-deep.mat-horizontal-content-container,
+::ng-deep.mat-horizontal-stepper-header {
+  padding: 0 !important;
+}
+
+.step-hint {
+  margin-top: 0.5rem;
+  max-width: 40ch;
+}
+
+form>.two-fields,
+form>mat-form-field{
+  width: 100%;
+  max-width: 100%;
+  margin: 0.5rem 0;
+}
+
+.two-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.two-fields>* {
+  flex-basis: 50%;
+}
+
+fieldset {
+  border-radius: .75rem;
+  padding: .75rem 1rem 0.25rem;
+  margin-bottom: 2rem;
+  max-width: 100%;
+}
+
+fieldset>legend {
+  padding: 0 0.5rem;
+}

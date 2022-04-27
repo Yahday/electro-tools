@@ -1,0 +1,62 @@
+<h1>Calculadora de paneles solares</h1>
+<div class="solar-container">
+    <div class="awad-card">
+        <div class="form-container">
+            <form [formGroup]="form">
+                <mat-form-field color="accent">
+                    <mat-label>Consumo en tu recibo de luz</mat-label>
+                    <input formControlName="kwh" matInput type="number" placeholder="Consumo eléctrico">
+                    <span matSuffix>KWh</span>
+                </mat-form-field>
+
+                <div class="group-container">
+                    <mat-label>El recibo es:</mat-label>
+                    <mat-radio-group formControlName="m">
+                        <mat-radio-button [value]="30">
+                            Mensual
+                        </mat-radio-button> 
+                        <mat-radio-button [value]="61">
+                            Bimestral
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                
+                <div class="group-container">
+                    <mat-label>Elige la capacidad del panel que quieras:</mat-label>
+                    <mat-radio-group formControlName="w">
+                        <mat-radio-button [value]="150">
+                            150 w
+                        </mat-radio-button>
+                        <mat-radio-button [value]="250">
+                            250 w
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+
+                <mat-form-field color="accent">
+                    <mat-label>Estado</mat-label>
+                    <mat-select formControlName="e" panelClass="awad-select-panel" overlayPanelClass="no-overlay">
+                        <mat-option *ngFor="let state of states" [value]="state.value">
+                           {{state.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <div *ngIf="panels?.isVisible" class="answer-container">
+                    <p>Usted necesita <span>{{panels.qty}} paneles solares</span> de {{panels.power}} W para cubrir su consumo de {{panels.totalConsumption}} KWh {{panels.month}}.</p>
+                </div>
+
+                <div class="form-actions">
+                    <button (click)="onCalculate()" 
+                            mat-raised-button 
+                            color="accent" 
+                            class="awad-button"
+                            [disabled]="form.invalid">
+                            CALCULAR
+                    </button>
+                    <button (click)="onClear()" mat-button>LIMPIAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

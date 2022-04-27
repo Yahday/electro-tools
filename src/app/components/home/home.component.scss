@@ -1,0 +1,50 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.hover:hover {
+    transition: transform 0.5s ease-in-out;
+    cursor: pointer;
+    transform: scale(1.01);
+}
+
+.awad-card {
+    margin: 1rem;
+    flex-basis: calc(50% - 2rem);
+}
+
+.menu-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.menu-card h2 {
+    text-align: center;
+}
+    
+img {
+    width: 90%;
+}
+
+@media (min-width: 768px) {
+    .home-container {
+        flex-direction: row;
+    }
+    .menu-card {
+        flex-direction: row;
+    }
+    .menu-card h2 {
+        text-align: left;
+    }
+    .menu-card>div {
+        width: 50%;
+    }
+    .menu-card>div:first-child {
+        display: flex;
+        justify-content: center;
+    }
+}

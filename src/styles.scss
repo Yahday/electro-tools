@@ -1,1 +1,190 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '~@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$blue-palette: (
+ 50: #8B8FA7,
+ 100: #737896,
+ 200: #636783,
+ 300: #585C74,
+ 400: #46495D,
+ 500: #393C4C,
+ 600: #2C2E3A,
+ 700: #21222C,
+ 800: #16171D,
+ 900: #0F1014,
+ contrast: (
+   50: hsl(0, 0%, 90%),
+   100: hsl(0, 0%, 85%),
+   200: hsl(0, 0%, 80%),
+   300: hsl(0, 0%, 75%),
+   400: hsl(0, 0%, 75%),
+   500: hsl(0, 0%, 75%),
+   600: hsl(0, 0%, 75%),
+   700: hsl(0, 0%, 75%),
+   800: hsl(0, 0%, 75%),
+   900: hsl(0, 0%, 75%),
+ )
+);
+
+$yellow-palette: (
+ 50: #FDE6CE,
+ 100: #FCDAB5,
+ 200: #FCCD9C,
+ 300: #FBC184,
+ 400: #FAB56B,
+ 500: #F89C3A,
+ 600: #F89C3A,
+ 700: #F78A17,
+ 800: #E87B08,
+ 900: #C56907,
+ contrast: (
+   50: rgba(97, 100, 107, 0.72),
+   100: rgba(97, 100, 107, 0.72),
+   200: rgba(97, 100, 107, 0.72),
+   300: rgba(97, 100, 107, 0.72),
+   400: #F1F1F1,
+   500: #F1F1F1,
+   600: #F1F1F1,
+   700: #F1F1F1,
+   800: #F1F1F1,
+   900: #F1F1F1,
+ )
+);
+
+$electro-tools-primary: mat.define-palette($blue-palette);
+$electro-tools-accent: mat.define-palette($yellow-palette);
+
+// The warn palette is optional (defaults to red).
+$electro-tools-warn: mat.define-palette(mat.$red-palette);
+
+//Typography
+$custom-typography: mat.define-typography-config(
+  $font-family: 'Nunito',
+  $display-4: mat.define-typography-level(112px, 112px, 400, 'Nunito', -0.0134em),
+  $display-3: mat.define-typography-level(56px, 56px, 600, 'Nunito', -0.0089em),
+  $display-2: mat.define-typography-level(45px, 48px, 600, 'Nunito', 0.0000em),
+  $display-1: mat.define-typography-level(34px, 40px, 600, 'Nunito', 0.0074em),
+  $headline: mat.define-typography-level(24px, 32px, 600, 'Nunito', 0.0000em),
+  $title: mat.define-typography-level(20px, 32px, 600, 'Nunito', 0.0075em),
+  $subheading-2: mat.define-typography-level(16px, 28px, 400, 'Nunito', 0.0094em),
+  $subheading-1: mat.define-typography-level(15px, 24px, 600, 'Nunito', 0.0067em),
+  $body-2: mat.define-typography-level(14px, 24px, 600, 'Nunito', 0.0179em),
+  $body-1: mat.define-typography-level(14px, 20px, 400, 'Nunito', 0.0179em),
+  $button: mat.define-typography-level(14px, 14px, 600, 'Nunito', 0.0893em),
+  $caption: mat.define-typography-level(12px, 20px, 400, 'Nunito', 0.0333em),
+  $input: mat.define-typography-level(inherit, 1.125, 400, 'Nunito', 1.5px)
+);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$electro-tools-theme: mat.define-light-theme((
+  color: (
+    primary: $electro-tools-primary,
+    accent: $electro-tools-accent,
+    warn: $electro-tools-warn,
+  ),
+  typography: $custom-typography
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($electro-tools-theme);
+
 /* You can add global styles to this file, and also import other style files */
+html {
+  box-sizing: border-box;
+  background-color: #393C4C;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+html, body { height: 100%; background-color: #393C4C;}
+body { margin: 0; font-family: 'Nunito', sans-serif; }
+::-webkit-scrollbar {
+  display: none;
+}
+img {max-width: 100%;}
+/* Hidde Input Text Arrows */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.mat-typography * {
+  color: hsl(0, 0%, 75%);
+}
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Nunito', sans-serif !important;
+  line-height: 1.5em;
+  color: hsl(0, 0%, 75%);
+}
+h1 {font-weight: 600 !important;}
+p {
+  font-family: 'Nunito', sans-serif;
+  color: hsl(0, 0%, 75%);
+}
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  //background-color: hsl(0, 0%, 50%);
+  background-color: #F9A750;
+}
+@media (min-width: 1024px) {
+  .hide-desktop {
+      display: none !important;
+  }
+}
+button.awad-button span,
+button.awad-button mat-icon {
+  color: #FFFFFF !important;
+}
+.awad-card::before {
+  border-radius: 8px 8px 0 0;
+  padding: 0.5rem 0;
+  width: 100%;
+  background-color: #F9A750;
+  display:inline-block;
+  vertical-align: top;
+  content: '';
+}
+.awad-card {
+  margin: 0 auto;
+  border-radius: 0.5rem;
+  box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.5), 
+              -4px -4px 10px rgba(255, 255, 255, 0.2);
+}
+
+.awad-card>div {
+  padding: 1.5rem;
+}
+
+.awad-select-panel {
+  background-color: #21222C;
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  margin-top: 1rem;
+  margin-right: 0.5em;
+}
+
+.awad-shadow {
+  box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.5), 
+              -4px -4px 10px rgba(255, 255, 255, 0.2);
+}
